@@ -1,0 +1,21 @@
+#container{
+	width: 500px;
+	height: 750px;
+	margin: 0 auto;
+}
+.header{
+	height: 150px;
+	width: 460px;
+	padding: 20px;
+}
+#destination,#score{
+	font-family: arial;
+	font-size: 25px;
+	margin: 20px auto;
+	text-align: center;
+}
+#block{
+	width: 500px;
+	height: 500px;
+	background-color: #bbada0;
+}
