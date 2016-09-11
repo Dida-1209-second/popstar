@@ -7,13 +7,14 @@ window.onload=function(){
 	canvas.width=WIDTH;
 	canvas.height=HEIGHT;
 	
-	init();
+	init(context);
 }
 
-function init(){
+function init(cxt){
 	for(var i=0;i<10;i++){
 		for(var j=0;j<10;j++){
 			starObj.init(i,j);
+			starObj.draw(cxt);
 		}
 	}
 	

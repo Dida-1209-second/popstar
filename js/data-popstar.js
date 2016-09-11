@@ -12,5 +12,8 @@ data=
 	[0,0,0,0,0,0,0,0,0,0]
 
 ];
-color=["#de3a3a","#faf707","#07a7fa","#07fa57","#e007fa"];
+colors=["#de3a3a","#faf707","#07a7fa","#07fa57","#e007fa"];
 
+function drawRoundRec(x,y,w,h){
+	
+}
