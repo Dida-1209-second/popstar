@@ -11,11 +11,7 @@ window.onload=function(){
 }
 
 function init(cxt){
-	for(var i=0;i<10;i++){
-		for(var j=0;j<10;j++){
-			starObj.init(i,j);
-			starObj.draw(cxt);
-		}
-	}
-	
+	star=new starObj();
+	star.init();
+	star.draw(cxt);
 }
