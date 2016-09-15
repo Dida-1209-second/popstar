@@ -13,5 +13,5 @@ window.onload=function(){
 function init(cxt){
 	star=new starObj();
 	star.init();
-	star.draw(cxt);
+	star.drawStar(cxt);
 }

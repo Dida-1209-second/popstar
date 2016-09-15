@@ -26,8 +26,22 @@ this.moveTo(x+r, y);
 this.arcTo(x+w, y, x+w, y+h, r);
 this.arcTo(x+w, y+h, x, y+h, r);
 this.arcTo(x, y+h, x, y, r);
-this.arcTo(x, y, x+w, y, r);
+//this.arcTo(x, y, x+w, y, r);
 // this.arcTo(x+r, y);
 this.closePath();
 return this;
 }
+
+CanvasRenderingContext2D.prototype.star=function(R,r,x,y){
+	this.beginPath();
+	for(var j=0;j<5;j++){
+		this.lineTo(Math.cos((18+j*72)/180*Math.PI)*R+x,
+           		    -Math.sin((18+j*72)/180*Math.PI)*R+y);   
+       	this.lineTo(Math.cos((54+j*72)/180*Math.PI)*r+x,   
+                    -Math.sin((54+j*72)/180*Math.PI)*r+y);   
+	}
+	this.closePath();
+	return this;
+}
+
+
