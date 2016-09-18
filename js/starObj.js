@@ -40,10 +40,7 @@ starObj.prototype.draw=function(cxt){
 starObj.prototype.drawStar=function(cxt){
 	for(var i=0;i<100;i++){
 		cxt.fillStyle=this.color[i];
-		cxt.star(20,10,this.x[i]+24,this.y[i]+24).fill();
+		cxt.starFill(20,10,this.x[i]+24,this.y[i]+24).fill();
+		cxt.starStroke(20,10,this.x[i]+24,this.y[i]+24).stroke();
 	}
-	
-	
-	
-	
 }
