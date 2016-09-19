@@ -3,6 +3,7 @@ var HEIGHT=500;
 var isgameover=false;
 var mx;
 var my;
+var star;
 
 window.onload=function(){
 	var canvas=document.getElementById("canvas");
@@ -17,6 +18,7 @@ window.onload=function(){
 function init(cxt){
 	//画星星和圆角矩形
 	star=new starObj();
+	
 	star.init();
 	star.draw(cxt);
 	star.drawStar(cxt);
@@ -39,10 +41,20 @@ function gameover(){
 function Collision(){
 	var arrayi=[];
 	var arrayj=[];
-	if(!!mx%50){
 		arrayi.push(Math.floor(mx/50));
+		arrayj.push(Math.floor(my/50));
+		Horizontal(arrayi,arrayj);
+
+}
+
+function Horizontal(arri,arrj){
+	var arr=[];
+	var i
+	while(!arri){
+		i=arri.pop();
+		
+		for(var j=0;)
 	}
-	//for(var )
 }
 
 function onMouseClick(e){
