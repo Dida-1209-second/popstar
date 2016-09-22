@@ -38,30 +38,38 @@ function gameover(){
 	return false;
 }
 
-function Collision(){
-	var arrayi=[];
-	var arrayj=[];
-		arrayi.push(Math.floor(mx/50));
-		arrayj.push(Math.floor(my/50));
-		Horizontal(arrayi,arrayj);
+function Collision(i,j){
+	var arr=[]
+	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+		//console.log(arrayi[0]);
+		while(!arr){
+			var x=arr.pop();
+			arr.push(moveLeft());
+			moveRight();
+			moveUp();
+			moveDown();
+		}
+		//Horizontal(arrayi,arrayj);
 
 }
 
-function Horizontal(arri,arrj){
-	var arr=[];
-	var i
-	while(!arri){
-		i=arri.pop();
-		
-		for(var j=0;)
-	}
-}
+//function Horizontal(arri,arrj){
+//	var arr=[];
+//	var i=
+//	while(!arri){
+//		i=arri.pop();
+//		for(var j=0;j<10;j++){
+//			for(var n=)
+//		}
+//	}
+//}
 
 function onMouseClick(e){
 	if(!gameover()){
 		if(e.offsetX||e.layerX){
 			mx=e.offsetX==undefined?e.layerX : e.offsetX;
 			my=e.offsetY==undefined?e.layerY : e.offsetY;
+			Collision(mx,my);
 		}
 	}
 }
