@@ -41,18 +41,29 @@ function gameover(){
 function Collision(i,j){
 	var arr=[]
 	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-		//console.log(arrayi[0]);
+		//console.log(arr[0]);
 		while(!arr){
-			var x=arr.pop();
-			arr.push(moveLeft());
-			moveRight();
-			moveUp();
-			moveDown();
+			var obj=arr.pop();
+			var x=obj.i;
+			var y=obj.j;
+			//console.log(x,y);
+			arr.push(checkLeft(x,y));
+			arr.push(checkRight(x,y));
+			arr.push(checkUp(x,y));
+			arr.push(checkDown(x,y));
 		}
 		//Horizontal(arrayi,arrayj);
 
 }
 
+function checkLeft(i,j){
+	var arrl=[];
+	for(var n=i-1;n>-1;n--){
+		if(data[n][j].color==data[i][j].color){
+			arrl.push({i:n,j:j});
+		}
+	}
+}
 //function Horizontal(arri,arrj){
 //	var arr=[];
 //	var i=
