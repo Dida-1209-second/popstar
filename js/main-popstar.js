@@ -4,6 +4,8 @@ var isgameover=false;
 var mx;
 var my;
 var star;
+var arr;
+var Arr;
 
 window.onload=function(){
 	var canvas=document.getElementById("canvas");
@@ -39,22 +41,23 @@ function gameover(){
 }
 
 function Collision(i,j){
-	var arr=[];
-	var Arr=[];
+	arr=[];
+	Arr=[];
 	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
 	Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
 		console.log(arr.length);
 		while(arr.length!=0){
 			var obj=arr.pop();
 			console.log(arr.length);
-			var x=obj.i;
-			var y=obj.j;
+			x=obj.i;
+			y=obj.j;
 			console.log(x,y);
-			arr.push(checkLeft(x,y));
-			arr.push(checkRight(x,y));
-			arr.push(checkUp(x,y));
-			arr.push(checkDown(x,y));
-			Arr.push(arr);
+			arr=arr.concat(checkLeft(x,y));
+			arr=arr.concat(checkRight(x,y));
+			arr=arr.concat(checkUp(x,y));
+			arr=arr.concat(checkDown(x,y));
+			
+			Arr=checkDouble(Arr,arr);
 			for(var i=0;i<Arr.length;i++)
 			console.log(Arr[i]);
 			
@@ -63,41 +66,57 @@ function Collision(i,j){
 
 }
 
-function checkLeft(i,j){
+function checkDouble(Arr,arr){
+	var flag=false;
+	for(var i=0;i<arr.length;i++){
+		var x=arr[i].i;
+		var y=arr[i].j;
+		for(var j=0;j<Arr.length;j++){
+			if(Arr[j].i==x&&Arr[j].j==y)
+				flag=true;
+		}
+		if(!flag){
+			Arr.push(arr[i]);
+		}
+	}
+	return Arr; 
+}
+
+function checkLeft(x,y){
 	var arrL=[];
-	for(var n=i-1;n>=0;n--){
+	for(var n=x-1;n>=0;n--){
 		//if(data[n][j].color==data[i][j].color){
-			arrL.push({i:n,j:j});
+			arrL.push({i:n,j:y});
 		//}
 	}
 	return arrL;
 }
 
-function checkRight(i,j){
+function checkRight(x,y){
 	var arrR=[];
-	for(var n=i+1;n<10;n++){
+	for(var n=x+1;n<10;n++){
 		//if(data[n][j].color==data[i][j].color){
-			arrR.push({i:n,j:j});
+			arrR.push({i:n,j:y});
 		//}
 	}
 	return arrR;
 }
 
-function checkUp(i,j){
+function checkUp(x,y){
 	var arrU=[];
-	for(var n=j-1;n>=0;n--){
+	for(var n=y-1;n>=0;n--){
 		//if(data[n][j].color==data[i][j].color){
-			arrU.push({i:n,j:j});
+			arrU.push({i:x,j:n});
 		//}
 	}
 	return arrU;
 }
 
-function checkDown(i,j){
+function checkDown(x,y){
 	var arrD=[];
-	for(var n=j+1;n<10;n++){
+	for(var n=y+1;n<10;n++){
 		//if(data[n][j].color==data[i][j].color){
-			arrD.push({i:n,j:j});
+			arrD.push({i:x,j:y});
 		//}
 	}
 	return arrD;
