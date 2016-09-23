@@ -39,30 +39,68 @@ function gameover(){
 }
 
 function Collision(i,j){
-	var arr=[]
+	var arr=[];
+	var Arr=[];
 	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-		//console.log(arr[0]);
-		while(!arr){
+	Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+		console.log(arr.length);
+		while(arr.length!=0){
 			var obj=arr.pop();
+			console.log(arr.length);
 			var x=obj.i;
 			var y=obj.j;
-			//console.log(x,y);
+			console.log(x,y);
 			arr.push(checkLeft(x,y));
 			arr.push(checkRight(x,y));
 			arr.push(checkUp(x,y));
 			arr.push(checkDown(x,y));
+			Arr.push(arr);
+			for(var i=0;i<Arr.length;i++)
+			console.log(Arr[i]);
+			
 		}
 		//Horizontal(arrayi,arrayj);
 
 }
 
 function checkLeft(i,j){
-	var arrl=[];
-	for(var n=i-1;n>-1;n--){
-		if(data[n][j].color==data[i][j].color){
-			arrl.push({i:n,j:j});
-		}
+	var arrL=[];
+	for(var n=i-1;n>=0;n--){
+		//if(data[n][j].color==data[i][j].color){
+			arrL.push({i:n,j:j});
+		//}
 	}
+	return arrL;
+}
+
+function checkRight(i,j){
+	var arrR=[];
+	for(var n=i+1;n<10;n++){
+		//if(data[n][j].color==data[i][j].color){
+			arrR.push({i:n,j:j});
+		//}
+	}
+	return arrR;
+}
+
+function checkUp(i,j){
+	var arrU=[];
+	for(var n=j-1;n>=0;n--){
+		//if(data[n][j].color==data[i][j].color){
+			arrU.push({i:n,j:j});
+		//}
+	}
+	return arrU;
+}
+
+function checkDown(i,j){
+	var arrD=[];
+	for(var n=j+1;n<10;n++){
+		//if(data[n][j].color==data[i][j].color){
+			arrD.push({i:n,j:j});
+		//}
+	}
+	return arrD;
 }
 //function Horizontal(arri,arrj){
 //	var arr=[];
