@@ -44,8 +44,9 @@ function Collision(i,j){
 	arr=[];
 	arrX=[];
 	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+	var i=0;
 	//Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-		for(var i=0;i<arr.length;i++){
+		do{
 			var obj=arr[i];
 			console.log(arr.length);
 			x=obj.i;
@@ -64,10 +65,11 @@ function Collision(i,j){
 			arr=checkDouble(arr,arrX);
 //			debugger
 //			Arr=checkDouble(Arr,arr);
-			for(var i=0;i<arr.length;i++)
-			console.log(arr[i]);
+			for(var j=0;j<arr.length;j++)
+			console.log(arr[j]);
+			i++;
 			
-		}
+		}while(i<arr.length);
 		//Horizontal(arrayi,arrayj);
 
 }
@@ -128,16 +130,6 @@ function checkDown(x,y){
 	}
 	return arrD;
 }
-//function Horizontal(arri,arrj){
-//	var arr=[];
-//	var i=
-//	while(!arri){
-//		i=arri.pop();
-//		for(var j=0;j<10;j++){
-//			for(var n=)
-//		}
-//	}
-//}
 
 function onMouseClick(e){
 	if(!gameover()){
