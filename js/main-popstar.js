@@ -5,7 +5,7 @@ var mx;
 var my;
 var star;
 var arr;
-var Arr;
+var arrX;
 
 window.onload=function(){
 	var canvas=document.getElementById("canvas");
@@ -42,44 +42,52 @@ function gameover(){
 
 function Collision(i,j){
 	arr=[];
-	Arr=[];
-	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-	Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-		console.log(arr.length);
+	arrX=[];
+	arrX.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+	//Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+		console.log(arrX.length);
 		while(arr.length!=0){
-			var obj=arr.pop();
+			var obj=arrX.pop();
 			console.log(arr.length);
 			x=obj.i;
 			y=obj.j;
 			console.log(x,y);
-			arr=arr.concat(checkLeft(x,y));
-			arr=arr.concat(checkRight(x,y));
-			arr=arr.concat(checkUp(x,y));
-			arr=arr.concat(checkDown(x,y));
-			
-			Arr=checkDouble(Arr,arr);
-			for(var i=0;i<Arr.length;i++)
-			console.log(Arr[i]);
+			arrX=checkLeft(x,y);
+			arr=checkDouble(arr,arrX);
+			debugger
+			arrX=checkRight(x,y);
+			arr=checkDouble(arr,arrX);
+			debugger
+			arrX=checkUp(x,y);
+			arr=checkDouble(arr,arrX);
+			debugger
+			arrX=checkDown(x,y);
+			arr=checkDouble(arr,arrX);
+			debugger
+//			Arr=checkDouble(Arr,arr);
+			for(var i=0;i<arr.length;i++)
+			console.log(arr[i]);
 			
 		}
 		//Horizontal(arrayi,arrayj);
 
 }
 
-function checkDouble(Arr,arr){
-	var flag=false;
-	for(var i=0;i<arr.length;i++){
-		var x=arr[i].i;
-		var y=arr[i].j;
-		for(var j=0;j<Arr.length;j++){
-			if(Arr[j].i==x&&Arr[j].j==y)
+function checkDouble(arr,arrX){
+	for(var i=0;i<arrX.length;i++){
+		var flag=false;
+		var x=arrX[i].i;
+		var y=arrX[i].j;
+		for(var j=0;j<arr.length;j++){
+			if(arr[j].i==x&&arr[j].j==y){
 				flag=true;
+			}
 		}
 		if(!flag){
-			Arr.push(arr[i]);
+			arr.push(arrX[i]);
 		}
 	}
-	return Arr; 
+	return arr; 
 }
 
 function checkLeft(x,y){
@@ -87,7 +95,7 @@ function checkLeft(x,y){
 	for(var n=x-1;n>=0;n--){
 		//if(data[n][j].color==data[i][j].color){
 			arrL.push({i:n,j:y});
-		//}
+		//}else break;
 	}
 	return arrL;
 }
@@ -97,7 +105,7 @@ function checkRight(x,y){
 	for(var n=x+1;n<10;n++){
 		//if(data[n][j].color==data[i][j].color){
 			arrR.push({i:n,j:y});
-		//}
+		//}else break;
 	}
 	return arrR;
 }
@@ -107,7 +115,7 @@ function checkUp(x,y){
 	for(var n=y-1;n>=0;n--){
 		//if(data[n][j].color==data[i][j].color){
 			arrU.push({i:x,j:n});
-		//}
+		//}else break;
 	}
 	return arrU;
 }
@@ -116,8 +124,8 @@ function checkDown(x,y){
 	var arrD=[];
 	for(var n=y+1;n<10;n++){
 		//if(data[n][j].color==data[i][j].color){
-			arrD.push({i:x,j:y});
-		//}
+			arrD.push({i:x,j:n});
+		//}else break;
 	}
 	return arrD;
 }
