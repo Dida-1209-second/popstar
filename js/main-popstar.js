@@ -43,27 +43,26 @@ function gameover(){
 function Collision(i,j){
 	arr=[];
 	arrX=[];
-	arrX.push({i:Math.floor(i/50),j:Math.floor(j/50)});
+	arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
 	//Arr.push({i:Math.floor(i/50),j:Math.floor(j/50)});
-		console.log(arrX.length);
-		while(arr.length!=0){
-			var obj=arrX.pop();
+		for(var i=0;i<arr.length;i++){
+			var obj=arr[i];
 			console.log(arr.length);
 			x=obj.i;
 			y=obj.j;
 			console.log(x,y);
 			arrX=checkLeft(x,y);
 			arr=checkDouble(arr,arrX);
-			debugger
+//			debugger
 			arrX=checkRight(x,y);
 			arr=checkDouble(arr,arrX);
-			debugger
+//			debugger
 			arrX=checkUp(x,y);
 			arr=checkDouble(arr,arrX);
-			debugger
+//			debugger
 			arrX=checkDown(x,y);
 			arr=checkDouble(arr,arrX);
-			debugger
+//			debugger
 //			Arr=checkDouble(Arr,arr);
 			for(var i=0;i<arr.length;i++)
 			console.log(arr[i]);
