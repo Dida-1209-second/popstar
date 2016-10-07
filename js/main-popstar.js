@@ -4,16 +4,17 @@ var isgameover = false;
 var mx;
 var my;
 var star;
-var arr;//存储点击位置上下左右颜色相同的星星
+var arr; 
+var cxt;//存储点击位置上下左右颜色相同的星星
 
 window.onload = function() {
 	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext('2d');
+	cxt = canvas.getContext('2d');
 	canvas.width = WIDTH;
 	canvas.height = HEIGHT;
 
 	canvas.addEventListener('click', onMouseClick, false);
-	init(context);
+	init(cxt);
 }
 
 function init(cxt) {
@@ -65,14 +66,49 @@ function Collision(i, j) {
 		arr = checkDouble(arr, checkUp(x, y));
 		//			debugger
 		arr = checkDouble(arr, checkDown(x, y));
-		//					debugger
-		//					for(var j=0;j<arr.length;j++)
-		//					console.log(arr[j]);
+		//							debugger
+		//							for(var j=0;j<arr.length;j++)
+		//							console.log(arr[j]);
 		i++;
 
 	} while (i < arr.length);
-	//Horizontal(arrayi,arrayj);
 
+	/*星星消失*/
+	while(arr.length != 0) {
+		var a = arr.pop();
+		var flag = true;
+		//		console.log(a.i,a.j);
+//清除画布上的星星
+		if(a.j == 0) {
+			starDisappear(cxt,a.i,a.j);//清除画布上的星星
+			data[a.i][a.j] = null;
+			//			console.log(data[a.i][a.j]);
+		} else if(a.j == 9) {
+			var j;
+			starDisappear(cxt,a.i,a.j);//清除画布上的星星
+			data[a.i][a.j] = null;
+			
+			for(j = 8; j >= 0; j--) {
+				if(data[a.i][j] != null) {
+					flag = false;
+				}
+			}
+			if(!flag) {
+				//				console.log("a.j=9,xia");
+				//data垂直向下移动
+			} else {
+				//				console.log("a.j=9,zuo");
+				//data水平向左移动
+			}
+		} else {
+			starDisappear(cxt,a.i,a.j);//清除画布上的星星
+			data[a.i][a.j] = null;
+		
+			//data垂直向下移动
+			//			console.log("a.j!=0/9,xia");
+		}
+		flag = true;
+	}
 }
 
 function checkDouble(arr, arrX) {
@@ -95,7 +131,7 @@ function checkDouble(arr, arrX) {
 function checkLeft(x, y) {
 	var arrL = [];
 	for(var n = x - 1; n >= 0; n--) {
-		if(data[n][y].color == data[x][y].color) {
+		if(!data[n][y]&&data[n][y].color == data[x][y].color) {
 			arrL.push({
 				i: n,
 				j: y
@@ -108,7 +144,7 @@ function checkLeft(x, y) {
 function checkRight(x, y) {
 	var arrR = [];
 	for(var n = x + 1; n < 10; n++) {
-		if(data[n][y].color == data[x][y].color) {
+		if(data[n][y].color!='null'&&data[n][y].color == data[x][y].color) {
 			arrR.push({
 				i: n,
 				j: y
@@ -121,7 +157,7 @@ function checkRight(x, y) {
 function checkUp(x, y) {
 	var arrU = [];
 	for(var n = y - 1; n >= 0; n--) {
-		if(data[x][n].color == data[x][y].color) {
+		if(!data[x][n].color&&data[x][n].color == data[x][y].color) {
 			arrU.push({
 				i: x,
 				j: n
@@ -134,7 +170,7 @@ function checkUp(x, y) {
 function checkDown(x, y) {
 	var arrD = [];
 	for(var n = y + 1; n < 10; n++) {
-		if(data[x][n].color == data[x][y].color) {
+		if(typeof data[x][n].color!='null'&& data[x][n].color == data[x][y].color) {
 			arrD.push({
 				i: x,
 				j: n
