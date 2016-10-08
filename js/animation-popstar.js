@@ -5,7 +5,12 @@ function starDisappear(cxt,i,j){
 	cxt.clearRect(x,y,50,50);
 }
 function verticalDown(i,j){
-	
+	while(i<9){
+		data[i+1][j]=data[i][j];
+		data[i][j]=null;
+		data[i+1][j].draw(cxt);
+		i+=1;
+	}
 }
 function horizontalLeft(i,j){
 	

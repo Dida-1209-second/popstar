@@ -12,20 +12,14 @@ var starObj = function() {
 starObj.prototype.init = function(i,j) {
 	this.i= i;
 	this.j = j;
-	this.x= i * 50;
+	this.y= i * 50;
 	//console.log(this.x);
-	this.y = j * 50;
+	this.x = j * 50;
 	//console.log(this.y);
 	this.color = colors[Math.floor(Math.random() * colors.length)];
 	//console.log(this.color);
 }
 
-//生成背景圆角矩形 
-//	for(var i=0;i<10;i++){
-//		for(j=0;j<10;j++){
-//			
-//		}
-//	}
 
 //圆角矩形
 starObj.prototype.draw = function(cxt) {
